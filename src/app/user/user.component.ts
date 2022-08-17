@@ -31,7 +31,7 @@ export class UserComponent implements OnInit {
    addUser(userForm: NgForm){
     if(userForm.valid){
       this.user.id+=1;
-      console.log(userForm.value);
+      
       this.userArray.push({...this.user});
       this.receiveData.emit(this.userArray);
     }
