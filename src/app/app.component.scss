@@ -1,3 +1,15 @@
 table, th, td {
     border:1px solid black;
   }
+#delete-button{
+  background-color: red; 
+  border-radius: 5px; 
+  font-family: 'Courier New', Courier, monospace; 
+  font-weight: bold; 
+  margin-left: 10px;
+}
+.alert div {
+  color: red;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}

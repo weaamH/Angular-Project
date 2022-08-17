@@ -1,38 +1,90 @@
 <h1>User Form</h1>
 
+<form #userForm="ngForm" (ngSubmit)="addUser(userForm)">
   <label>Name </label>
-  <input [(ngModel)]="user.name" ><br>
-  <br>
-  <label>User name </label>
-  <input [(ngModel)]="user.user_name"><br>
+  <input [(ngModel)]="user.name" type="text" placeholder="Name" name="user-name" required minlength="3"><br>
+  <div class="alert">
+    <div *ngIf="(userForm.form.controls['user-name']?.touched || userForm.submitted) 
+    && userForm.form.controls['user-name']?.errors?.['required']">
+      Name is required!
+    </div>
+    <div *ngIf="userForm.form.controls['user-name']?.errors?.['minlength']">
+      Name must be at least 3 characters long.
+    </div>
+  </div>
+
+
   <br>
   <label>Age </label>
-  <input [(ngModel)]="user.age"><br>
+  <input [(ngModel)]="user.age" type="number" placeholder="Age" name="user-age"><br>
   <br>
+
+
   <label>Email </label>
-  <input [(ngModel)]="user.email"><br>
+  <input [(ngModel)]="user.email" type="email" placeholder="Email" name="user-email" 
+  required email><br>
+  <div class="alert">
+    <div *ngIf="(userForm.form.controls['user-email']?.touched || userForm.submitted)
+    && userForm.form.controls['user-email']?.errors?.['required']">
+      Email is required!
+    </div>
+    <div *ngIf="userForm.form.controls['user-email']?.touched && 
+    userForm.form.controls['user-email']?.errors?.['email']">
+      Invalid Email!
+    </div>
+  </div>
   <br>
+
+
   <label>Password </label>
-  <input [(ngModel)]="user.password"><br>
+  <input [(ngModel)]="user.password" type="password" placeholder="Password" name="user-password" 
+  #password="ngModel" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"><br>
+  <div class="alert alert-danger">
+    <div *ngIf="(userForm.form.controls['user-password']?.touched || userForm.submitted) 
+    && userForm.form.controls['user-password']?.errors?.['required']"> 
+      Password is required! </div>
+    <div *ngIf="userForm.form.controls['user-password']?.errors?.['pattern']"> 
+      Password must contain at least one number, one uppercase, one lowercase letter,
+        and at least 8 characters.
+      </div>
+  </div>
   <br>
-  <button  (click)="addUser()">add</button>
+
+
+  <label>Confirm Password </label>
+  <input [(ngModel)]="user.confirm_password" type="password" placeholder="Confirm password" name="confirm-password" 
+  required confirmedValidator pattern="{{ password.value }}"><br>
+  <div class="alert">
+    <div *ngIf="(userForm.form.controls['confirm-password']?.touched || userForm.submitted) 
+    && userForm.form.controls['confirm-password']?.errors?.['required']">
+    You must confirm your password.</div>
+    <div *ngIf="userForm.submitted && userForm.form.controls['confirm-password']?.errors?.['pattern']">
+      The password confirmation dose not match.
+    </div>
+  </div>
+  <br>
+
+  <button>Submit</button>
+</form>
 
 <h1>User Data</h1>
 <table>
   <thead>
     <tr>
+      <th>Id</th>
       <th>Name</th>
-      <th>User name</th>
       <th>Age</th>
       <th>Email</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let user of userArray">
+      <td>{{user.id}}</td>
       <td>{{user.name}}</td>
-      <td>{{user.user_name}}</td>
       <td>{{user.age}}</td>
       <td>{{user.email}}</td>
+      <button id="delete-button" (click)="deleteUser(user)"> X</button>
     </tr>
   </tbody>
 </table>
