@@ -1,0 +1,80 @@
+<div class="container">
+  <h1>Registration</h1>
+
+<form #userForm="ngForm" (ngSubmit)="addUser(userForm)">
+ <div class="section">
+  <label class="label">Name </label>
+  <input class="input" [(ngModel)]="user.name" type="text" placeholder="Name" name="user-name" required minlength="3">
+
+  <div class="alert" *ngIf="(userForm.form.controls['user-name']?.touched || userForm.submitted) 
+  && userForm.form.controls['user-name']?.errors?.['required']">
+    Name is required!
+  </div>
+  <div class="alert" *ngIf="userForm.form.controls['user-name']?.errors?.['minlength']">
+    Name must be at least 3 characters long.
+  </div>
+
+ </div>
+
+
+  <div class="section">
+    <label class="label">Age </label>
+    <input class="input" [(ngModel)]="user.age" type="number" placeholder="Age" name="user-age">
+  </div>
+
+
+  <div class="section">
+    <label class="label">Email </label>
+    <input class="input" [(ngModel)]="user.email" type="email" placeholder="Email" name="user-email" 
+    required email>
+
+    <div class="alert" *ngIf="(userForm.form.controls['user-email']?.touched || userForm.submitted)
+    && userForm.form.controls['user-email']?.errors?.['required']">
+      Email is required!
+    </div>
+    <div class="alert" *ngIf="userForm.form.controls['user-email']?.touched && 
+    userForm.form.controls['user-email']?.errors?.['email']">
+      Invalid Email!
+    </div>
+  </div>
+
+
+
+  <div class="section">
+    <label class="label">Password </label>
+    <input class="input" [(ngModel)]="user.password" type="password" placeholder="Password" name="user-password" 
+    #password="ngModel" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+
+    <div class="alert" *ngIf="(userForm.form.controls['user-password']?.touched || userForm.submitted) 
+    && userForm.form.controls['user-password']?.errors?.['required']"> 
+      Password is required! 
+    </div>
+    <div class="alert" *ngIf="userForm.form.controls['user-password']?.errors?.['pattern']"> 
+      Password must contain at least one number, one uppercase,<br> one lowercase letter,
+        and at least 8 characters.
+    </div>
+
+  </div>
+
+
+
+  <div class="section">
+    <label class="label">Confirm Password </label>
+    <input class="input" [(ngModel)]="user.confirm_password" type="password" placeholder="Confirm password" name="confirm-password" 
+    required confirmedValidator pattern="{{ password.value }}">
+
+    <div class="alert" *ngIf="(userForm.form.controls['confirm-password']?.touched || userForm.submitted) 
+    && userForm.form.controls['confirm-password']?.errors?.['required']">
+    You must confirm your password.</div>
+    <div class="alert" *ngIf="userForm.submitted && userForm.form.controls['confirm-password']?.errors?.['pattern']">
+      The password confirmation dose not match.
+    </div>
+
+  </div>
+
+  <div class="section">
+    <button class="submit">Submit</button>
+  </div>
+</form>
+
+</div>

@@ -1,0 +1,36 @@
+.alert {
+    color: red;
+    padding-top: 5px;
+  }
+  .container{
+    background-color: white;
+    margin-top: 40px;
+    margin-left: 250px;
+    margin-right: 100px;
+    padding: 30px 20px 30px;
+    border-radius: 15px;
+  }
+  .submit{
+    background-color: #d9b4e9;
+    border-radius: 50px;
+    border: 0px;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    height: 40px;
+  }
+  .section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 20px;
+  }
+  .label{
+    padding-bottom: 7px;
+    font-size: 15px;
+  }
+  .input{
+    border: 1px solid darkgrey;
+    border-radius: 10px;
+    height: 30px;
+    width: 350px;
+  }
