@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-    overflow: hidden;
-    height: 100vh;
-    padding-left: 20px;
-    background: linear-gradient(135deg, #c1daec, #d9b4e9);
+    margin: 0;
+    padding: 0;
+}
+button{
+    border: 0;
+    border-radius: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    height: 30px;
+    width: 100px;
 }

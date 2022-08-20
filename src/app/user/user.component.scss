@@ -1,22 +1,18 @@
 .alert {
     color: red;
     padding-top: 5px;
+    font-size: 12px;
   }
   .container{
     background-color: white;
-    margin-top: 40px;
-    margin-left: 250px;
-    margin-right: 100px;
     padding: 30px 20px 30px;
     border-radius: 15px;
   }
   .submit{
-    background-color: #d9b4e9;
-    border-radius: 50px;
-    border: 0px;
-    font-size: 15px;
-    font-family: 'Times New Roman', Times, serif;
-    height: 40px;
+    background-color: #3b945e;
+  }
+  .submit:hover{
+    background-color: #57ba98;
   }
   .section{
     display: flex;
@@ -33,4 +29,9 @@
     border-radius: 10px;
     height: 30px;
     width: 350px;
+  }
+  .submit-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }

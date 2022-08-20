@@ -1,0 +1,25 @@
+<div class="data-container">
+    <h2>User Data</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Delete</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let object of parentInstance">
+                <td>{{object.id}}</td>
+                <td>{{object.name}}</td>
+                <td>{{object.age}}</td>
+                <td>{{object.email}}</td>
+                <button id="delete-button">X</button>
+                <button>Edit</button>
+            </tr>
+        </tbody>
+    </table>
+</div>

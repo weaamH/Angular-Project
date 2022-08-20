@@ -1,29 +1,67 @@
-table, th, td {
-    border:1px solid black;
-    background-color: white;
-  }
-#delete-button{
-  background-color: red; 
-  border-radius: 5px; 
-  font-family: 'Courier New', Courier, monospace; 
-  font-weight: bold; 
-  margin-left: 10px;
+.main-page {
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background-color: #f2f2f2;
 }
-.alert div {
-  color: red;
-  padding: 1rem;
-  margin-bottom: 1rem;
-}
-.main-container{
+
+.flexbox-2 {
   display: flex;
 }
-.data-container{
-  padding: 30px 20px 30px;
-  margin-top: 40px;
-  border-radius: 15px;
-  padding-top: 25px;
-  overflow: auto;
+
+.flexbox-1-item-1 {
+  background-color: #3b945e;
+  flex-basis: 80px;
+  padding-left: 5px;
+}
+
+.flexbox-1-item-2 {
+  flex-grow: 1; 
+}
+
+.left-section {
+  min-width: 200px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  background-color: #3b945e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-content {
+  flex-grow: 1;
+  flex-basis: 10vh;
+  font-size: 20px; 
+}
+.flexbox-3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+
+.flexbox-4 {
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+}
+
+.flexbox-5{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.show-button{
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+}
+.show-button:hover {
+  color: black;
   background-color: white;
-  height: 540px;
-  width: 300px;
+  transition: 0.7s;
 }
