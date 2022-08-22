@@ -22,7 +22,7 @@ export class UserListComponent implements OnInit {
 
   deleteUser(user: userVM){
     let index = this.usersService.userArray.indexOf(user);
-    if(index != -1){
+    if(index >= 0){
       this.usersService.userArray.splice(index, 1);
     }
   }

@@ -5,10 +5,13 @@ import { UserListComponent } from './user-list/user-list.component';
 import { FormsModule } from '@angular/forms';
 import { UsersRoutingModule } from './users-routing.module';
 
+import { AgeCalculatorPipe } from '../pipes/age-calculator.pipe';
+
 @NgModule({
   declarations: [
     UserComponent,
-    UserListComponent
+    UserListComponent,
+    AgeCalculatorPipe
   ],
   imports: [
     CommonModule,

@@ -2,11 +2,12 @@ import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserDataService } from 'src/app/user-data.service';
 import { NgForm } from '@angular/forms';
-import { NgModel } from '@angular/forms';
+import { Router } from '@angular/router';
 
 export interface userVM{
   id: number;
   name: String;
+  date_of_birth: Date;
   age: number;
   email: String;
   password: String;
@@ -22,7 +23,7 @@ export class UserComponent implements OnInit {
 
   public idToCheck: number = 0;
 
-  constructor(private usersService: UserDataService, private activatedRout: ActivatedRoute) {
+  constructor(private usersService: UserDataService, private activatedRout: ActivatedRoute, private router: Router) {
     this.activatedRout.queryParams.subscribe(data =>{
       console.log(data);
     });
@@ -38,7 +39,7 @@ export class UserComponent implements OnInit {
     }
   }
 
-  public user: userVM={id: 0, name: '', age: 0, email: '', password: '', confirm_password: ''};
+  public user: userVM={id: 0, name: '', date_of_birth: new Date(), age: 0, email: '', password: '', confirm_password: ''};
   public num_of_users = 0;
 
    addUser(userForm: NgForm){
@@ -46,6 +47,8 @@ export class UserComponent implements OnInit {
       this.num_of_users += 1;
       this.user.id = this.num_of_users;
       this.usersService.userArray.push({...this.user});
+      console.log(this,this.usersService.userArray);
+      this.router.navigate(['/users/list']);
     }
   }
 }

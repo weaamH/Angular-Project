@@ -5,6 +5,7 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Date Of Birth</th>
                 <th>Age</th>
                 <th>Email</th>
                 <th>Delete</th>
@@ -15,10 +16,11 @@
             <tr *ngFor="let object of parentInstance">
                 <td>{{object.id}}</td>
                 <td>{{object.name}}</td>
-                <td>{{object.age}}</td>
+                <td>{{object.date_of_birth | date}}</td>
+                <td>{{object.date_of_birth | ageCalculator}}</td>
                 <td>{{object.email}}</td>
-                <button id="delete-button">X</button>
-                <button>Edit</button>
+                <td><button id="delete-button" class="border-radius" (click)="deleteUser(object)">Delete</button></td>
+                <td><button class="border-radius">Edit</button></td>
             </tr>
         </tbody>
     </table>

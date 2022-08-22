@@ -16,6 +16,17 @@
 
  </div>
 
+ <div class="section">
+  <label class="label">Date of Birth</label>
+  <input class="input" [(ngModel)]="user.date_of_birth" type="date" placeholder="Date of Birth" name="date" required>
+
+  <div class="alert" *ngIf="(userForm.form.controls['date']?.touched || userForm.submitted) 
+  && userForm.form.controls['date']?.errors?.['date']">
+    Name is required!
+  </div>
+
+ </div>
+
 
   <div class="section">
     <label class="label">Age </label>
@@ -73,7 +84,7 @@
   </div>
 
   <div class="submit-container">
-    <button class="submit">{{idToCheck != 0? 'Submit': 'Update'}}</button>
+    <button class="submit">Submit</button>
   </div>
 </form>
 
