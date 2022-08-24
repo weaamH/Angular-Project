@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDataService } from 'src/app/user-data.service';
 import { userVM } from '../user/user.component';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-user-list',
@@ -10,20 +12,22 @@ import { userVM } from '../user/user.component';
 export class UserListComponent implements OnInit {
 
   parentInstance: userVM[] = [];
+  numOfUsers: number = 0;
 
-  constructor(private usersService: UserDataService) { 
+  constructor(private usersService: UserDataService, private router: Router) { 
   }
 
-  ngOnInit(): void {
-    this.parentInstance = this.usersService.userArray;
+  ngOnInit() {
+    this.usersService.getUsers().subscribe(data =>{
+      this.parentInstance = data;
+      this.numOfUsers = this.parentInstance.length;
+    });
   }
-
-  userIndex: number = 0;
 
   deleteUser(user: userVM){
-    let index = this.usersService.userArray.indexOf(user);
-    if(index >= 0){
-      this.usersService.userArray.splice(index, 1);
-    }
+    this.usersService.deleteUser(user.id).subscribe();
+  }
+  editUser(object: userVM){
+    this.router.navigate(['/users/'+ object.id]);
   }
 }

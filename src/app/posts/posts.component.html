@@ -1,0 +1,15 @@
+<div class="display-flex main-flex">
+    <tr class="add-post add-post-margin">
+        <td class="display-flex">
+            <input class="text-to-add" placeholder="Add your Post">
+            <button class="share-button">Share</button>
+        </td>
+    </tr>
+    <tr class="main-flex-item-2">
+        <td><span class="list-title">Posts</span></td>
+    </tr>
+    <tr *ngFor="let post of post_list" class="add-post add-post-margin-2">
+        <div class="post title">{{post.title}}</div>
+        <div class="post date">{{post.created_at | date}}</div>
+    </tr>
+</div>

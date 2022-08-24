@@ -1,91 +1,70 @@
-<div class="container">
-  <h2>Registration</h2>
+<div class="main-flex">
 
-<form #userForm="ngForm" (ngSubmit)="addUser(userForm)">
- <div class="section">
-  <label class="label">Name </label>
-  <input class="input" [(ngModel)]="user.name" type="text" placeholder="Name" name="user-name" required minlength="3">
-
-  <div class="alert" *ngIf="(userForm.form.controls['user-name']?.touched || userForm.submitted) 
-  && userForm.form.controls['user-name']?.errors?.['required']">
-    Name is required!
-  </div>
-  <div class="alert" *ngIf="userForm.form.controls['user-name']?.errors?.['minlength']">
-    Name must be at least 3 characters long.
+  <div>
+    <span class="add-user">{{user.id >=1? 'Edit': 'Add'}} User</span>
   </div>
 
- </div>
+  <div class="form">
+    <form #userForm="ngForm" (ngSubmit)="addUser(userForm)">
 
- <div class="section">
-  <label class="label">Date of Birth</label>
-  <input class="input" [(ngModel)]="user.date_of_birth" type="date" placeholder="Date of Birth" name="date" required>
+      <tr>
+        <td><label class="label">Name<span class="required">*</span></label></td>
+        <td>
+          <input class="input" [(ngModel)]="user.name" type="text" name="user-name" required minlength="3">
 
-  <div class="alert" *ngIf="(userForm.form.controls['date']?.touched || userForm.submitted) 
-  && userForm.form.controls['date']?.errors?.['date']">
-    Name is required!
+          <div class="alert" *ngIf="(userForm.form.controls['user-name']?.touched || userForm.submitted) 
+      && userForm.form.controls['user-name']?.errors?.['required']">
+            Name is required!
+          </div>
+          <div class="alert" *ngIf="userForm.form.controls['user-name']?.errors?.['minlength']">
+            Name must be at least 3 characters long.
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label class="label">Date of birth</label></td>
+        <td><input class="input" [(ngModel)]="user.dob" type="date" name="date"></td>
+      </tr>
+
+      <tr>
+        <td><label class="label">Email<span class="required">*</span></label></td>
+        <td>
+          <input class="input" [(ngModel)]="user.user_email" type="email" name="user-email" required email>
+        <div class="alert" *ngIf="(userForm.form.controls['user-email']?.touched || userForm.submitted)
+        && userForm.form.controls['user-email']?.errors?.['required']">
+          Email is required!
+        </div>
+        <div class="alert" *ngIf="userForm.form.controls['user-email']?.touched && 
+        userForm.form.controls['user-email']?.errors?.['email']">
+          Invalid Email!
+        </div>
+        </td>
+      </tr>
+
+      <tr [ngClass]="{'hide-password': user.id >=1}" id="pass">
+        <td><label class="label">Password<span class="required">*</span></label></td>
+        <td>
+          <input class="input" [(ngModel)]="user.password" type="password" name="user-password" #password="ngModel"
+          required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+
+        <div class="alert" *ngIf="(userForm.form.controls['user-password']?.touched || userForm.submitted) 
+        && userForm.form.controls['user-password']?.errors?.['required']">
+          Password is required!
+        </div>
+        <div class="alert" *ngIf="userForm.form.controls['user-password']?.errors?.['pattern']">
+          Password must contain at least one number, one uppercase,<br> one lowercase letter,
+          and at least 8 characters.
+        </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <button class="submit" (click)="addUser(userForm)">{{user.id >=1? 'Edit': 'Add'}}</button>
+        </td>
+      </tr>
+    </form>
   </div>
-
- </div>
-
-
-  <div class="section">
-    <label class="label">Age </label>
-    <input class="input" [(ngModel)]="user.age" type="number" placeholder="Age" name="user-age">
-  </div>
-
-
-  <div class="section">
-    <label class="label">Email </label>
-    <input class="input" [(ngModel)]="user.email" type="email" placeholder="Email" name="user-email" 
-    required email>
-
-    <div class="alert" *ngIf="(userForm.form.controls['user-email']?.touched || userForm.submitted)
-    && userForm.form.controls['user-email']?.errors?.['required']">
-      Email is required!
-    </div>
-    <div class="alert" *ngIf="userForm.form.controls['user-email']?.touched && 
-    userForm.form.controls['user-email']?.errors?.['email']">
-      Invalid Email!
-    </div>
-  </div>
-
-
-
-  <div class="section">
-    <label class="label">Password </label>
-    <input class="input" [(ngModel)]="user.password" type="password" placeholder="Password" name="user-password" 
-    #password="ngModel" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
-
-    <div class="alert" *ngIf="(userForm.form.controls['user-password']?.touched || userForm.submitted) 
-    && userForm.form.controls['user-password']?.errors?.['required']"> 
-      Password is required! 
-    </div>
-    <div class="alert" *ngIf="userForm.form.controls['user-password']?.errors?.['pattern']"> 
-      Password must contain at least one number, one uppercase,<br> one lowercase letter,
-        and at least 8 characters.
-    </div>
-
-  </div>
-
-
-
-  <div class="section">
-    <label class="label">Confirm Password </label>
-    <input class="input" [(ngModel)]="user.confirm_password" type="password" placeholder="Confirm password" name="confirm-password" 
-    required confirmedValidator pattern="{{ password.value }}">
-
-    <div class="alert" *ngIf="(userForm.form.controls['confirm-password']?.touched || userForm.submitted) 
-    && userForm.form.controls['confirm-password']?.errors?.['required']">
-    You must confirm your password.</div>
-    <div class="alert" *ngIf="userForm.submitted && userForm.form.controls['confirm-password']?.errors?.['pattern']">
-      The password confirmation dose not match.
-    </div>
-
-  </div>
-
-  <div class="submit-container">
-    <button class="submit">Submit</button>
-  </div>
-</form>
-
 </div>

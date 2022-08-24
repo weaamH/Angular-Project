@@ -1,30 +1,72 @@
-table, th, td {
-    border:1px solid black;
-    background-color: white;
-  }
-  button{
-    border: 0;
-    height: 25px;
-    width: 55px;
-  }
-#delete-button{
-  background-color: red;
-  font-family: 'Times New Roman', Times, serif;
+table{
+  border-collapse: collapse;
+  box-shadow: 5px;
+  z-index: 5px;
+  width: 100%;
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.28);
 }
-.border-radius{
+th, td {
+    font-size: 15px;
+    padding: 14px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+  }
+  th{
+    font-size: 20px;
+    border-bottom: 2px solid #ddd;
+  }
+  .plus-button{
+    border: none;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    background-color: #78909c;
+    color: #ffffff;
+    font-size: 20px;
+  }
+.edit-delete{
+  color: #ffffff;
+  border: none;
   border-radius: 5px;
+  height: 25px;
+  font-size: 15px;
 }
-.alert div {
-  color: red;
-  padding: 1rem;
-  margin-bottom: 1rem;
+.edit-button{
+  background-color: #78909c;
+  margin-right: 8px;
+  width: 50px;
 }
-.data-container{
-  padding: 30px 20px 30px;
-  border-radius: 15px;
-  padding-top: 25px;
-  overflow: auto;
-  background-color: white;
-  height: 540px;
-  width: 500px;
+.delete-button{
+  background-color: #f40600;
+  width: 25px;
+}
+.main-flexbox{
+  display: flex;
+  flex-direction: column;
+  padding: 25px 15px 15px;
+}
+.flex-1{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+.flex-2{
+  max-width: 100%;
+  display: flex;
+  border: 0px;
+  box-shadow: 5px;
+  overflow-x:auto;
+}
+.users-span{
+  font-weight: 900;
+  font-size: 25px;
+}
+.num-of-items{
+  font-size: 14px;
+  color: #78909c;
+  margin-left: 8px;
+}
+.border{
+  border-bottom: 1px solid #78909c;
 }

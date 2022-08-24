@@ -1,37 +1,56 @@
-.alert {
-    color: red;
-    padding-top: 5px;
-    font-size: 12px;
-  }
-  .container{
-    background-color: white;
-    padding: 30px 20px 30px;
-    border-radius: 15px;
-  }
-  .submit{
-    background-color: #3b945e;
-  }
-  .submit:hover{
-    background-color: #57ba98;
-  }
-  .section{
+  .main-flex{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding-bottom: 20px;
+    padding: 30px 15px 15px;
+  }
+  .add-user{
+    font-weight: 900;
+    font-size: 25px;
+  }
+  .form{
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.28);
+    margin-top: 15px;
+    padding: 25px;
+    padding-bottom: 40px;
+  }
+  .submit{
+    background-color: #78909c;
+    border: none;
+    border-radius: 5px;
+    height: 35px;
+    width: 110px;
+    color: #ffffff;
+    font-size: 25px;
+    margin-left: 15px;
+  }
+  td{
+    padding: 8px;
   }
   .label{
     padding-bottom: 7px;
     font-size: 15px;
   }
   .input{
-    border: 1px solid darkgrey;
-    border-radius: 10px;
+    border: 1px solid #78909c;
     height: 30px;
-    width: 350px;
+    width: 1120px;
+    margin-left: 15px;
+  }
+  .required{
+    color: #ba5541;
+    margin: 4px;
+    font-size: 25px;
   }
   .submit-container{
     display: flex;
     align-items: center;
-    justify-content: center;
+  }
+  .alert {
+    color: red;
+    padding-top: 5px;
+    font-size: 12px;
+    margin-left: 15px;
+  }
+  .hide-password{
+    display: none;
   }

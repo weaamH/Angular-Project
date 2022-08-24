@@ -1,14 +1,16 @@
 <div class="main-page">
   <header class="flexbox-1-item-1 flexbox-5">
+    <span class="app-logo">APP LOGO</span>
   </header>
   <div class="flexbox-1-item-2 flexbox-2">
-    <div class="left-section">
-      <div class="flexbox-3">Click to show User List</div>
-      <button routerLink="/users/list" class="show-button">
-        Show</button>
+    <div class="left-section" style="z-index:1;" id="navbar">
+      <a routerLink="/users/list" class="link" [ngClass]="{'active': (currentRoute == '/users/list' || currentRoute == '/users/form' || currentRoute == '/users/'+id_url)}">Users</a>
+      <a routerLink="/posts" class="link" [ngClass]="{'active': currentRoute == '/posts'}">Posts</a>
+      <a href="#" class="link">Settings</a>
     </div>
-    <div class=" main-content flexbox-5">
+    <div class=" main-content">
       <router-outlet></router-outlet>
     </div>
   </div>
 </div>
+

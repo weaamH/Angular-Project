@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserDataService } from 'src/app/user-data.service';
 import { NgForm } from '@angular/forms';
@@ -7,11 +7,11 @@ import { Router } from '@angular/router';
 export interface userVM{
   id: number;
   name: String;
-  date_of_birth: Date;
   age: number;
-  email: String;
+  user_email: String;
+  dob: Date;
   password: String;
-  confirm_password: string;
+  posts: [];
 }
 
 @Component({
@@ -21,7 +21,6 @@ export interface userVM{
 })
 export class UserComponent implements OnInit {
 
-  public idToCheck: number = 0;
 
   constructor(private usersService: UserDataService, private activatedRout: ActivatedRoute, private router: Router) {
     this.activatedRout.queryParams.subscribe(data =>{
@@ -29,25 +28,26 @@ export class UserComponent implements OnInit {
     });
    }
 
+   public user: userVM={id: 0, name: '', age: 0, user_email: '', dob: new Date(), password: '', posts: []};
+   public idToCheck: number = this.user.id;
+
   ngOnInit() {
     const user_id = + this.activatedRout.snapshot.params['id'];
-    for(let i=0; i<this.usersService.userArray.length; i++){
-      if(this.usersService.userArray[i].id == user_id){
-        this.user = {...this.usersService.userArray[i]};
-        this.idToCheck = user_id;
-      }
-    }
+    this.usersService.getUserById(user_id).subscribe(data =>{
+      this.user = data;
+    });
   }
-
-  public user: userVM={id: 0, name: '', date_of_birth: new Date(), age: 0, email: '', password: '', confirm_password: ''};
-  public num_of_users = 0;
 
    addUser(userForm: NgForm){
     if(userForm.valid){
-      this.num_of_users += 1;
-      this.user.id = this.num_of_users;
-      this.usersService.userArray.push({...this.user});
-      console.log(this,this.usersService.userArray);
+      if(this.user.id<1){
+        this.usersService.createUser(this.user).subscribe(result =>{
+          console.log(result);
+        });
+      }
+      else{
+        this.usersService.updateUser(this.user, this.user.id).subscribe();
+      }
       this.router.navigate(['/users/list']);
     }
   }
